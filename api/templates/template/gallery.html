@@ -1,0 +1,55 @@
+{% extends 'template/base.html' %}
+{% block title %}
+    Pikom | Products
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% for product in albums %}
+        <div class="col-xs-12 col-md-6">
+            <div class="prod-info-main prod-wrap clearfix">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="product-image">
+                            {% for image in product.photo_set.all %}
+                                {% if image.is_featured %}
+                                    <a href="/album/view/{{ product.album_url_id }}">
+                                        <img src="{{ image.image.url }}" class="img-responsive">
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            {#                            <span class="tag2 hot">#}
+                            {#							HOT#}
+                            {#						</span>#}
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-12 col-xs-12">
+                        <div class="product-deatil">
+                            <h5 class="name">
+                                <a href="/album/view/{{ product.album_url_id }}">
+                                    {{ product.name }}
+                                </a>
+
+                            </h5>
+                            <span class="tag1"></span>
+                        </div>
+                        <div class="description">
+                            <p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">Owner: {{ product.publisher }}</p>
+                            <p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">Total: {{ product.photo_set.count }} photos</p>
+                            <p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">Total: {{ product.comment_set.count }} comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end product -->
+        </div>
+    {% endfor %}
+{% endblock %}

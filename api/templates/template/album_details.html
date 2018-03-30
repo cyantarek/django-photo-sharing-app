@@ -1,0 +1,90 @@
+{% extends 'template/base.html' %}
+{% block title %}
+    Pikom | Products
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-8">
+                {% for product in album.photo_set.all %}
+                    <div class="col-xs-12 col-md-4">
+                        <div class="prod-info-main prod-wrap clearfix">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="product-image">
+                                        <img src="{{ product.image.url }}" width="100%">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <div class="product-deatil">
+                                        <h5 class="name">
+                                            {{ product.name }}
+                                        </h5>
+                                        <span class="tag1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product -->
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-xs-4">
+                <div class="row"></div>
+                {% if request.user == album.publisher %}
+                    <a href="/album/{{ album.album_url_id }}/add_photos/">
+                        <button class="bg-primary">Add Photos</button>
+                        <br>
+                    </a>
+                {% endif %}
+                <div class="panel panel-default">
+
+
+                    <div class="panel-heading">Comments and Rating</div>Rating: {{ rating|floatformat:"1" }}
+                {% if not request.user == album.publisher %}
+                    <form action="/album/{{ album.album_url_id }}/comment/" method="post">
+                        {% csrf_token %}
+                        <br>
+
+                        <hr>
+
+                        Comment: <input type="text" name="comment" class="form-control" placeholder="Type comment"><br>
+                        Rating: <select name="rating" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br>
+                        <button type="submit" class="form-control btn btn-success">Add</button>
+                        <br>
+                    </form>
+                {% endif %}
+
+                    <h3 align="center">All Comments</h3>
+                    <hr>
+                    {% for comment in album.comment_set.all %}
+                        <ul>
+                            <li><p>{{ comment.comment_text }} by {% if comment.commenter != None %}
+                                {{ comment.commenter }} {% else %}
+                                                              Annonymous {% endif %}</p></li>
+                            <hr>
+                        </ul>
+                    {% endfor %}
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

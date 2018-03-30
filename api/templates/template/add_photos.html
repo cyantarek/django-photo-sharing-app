@@ -1,0 +1,29 @@
+{% extends 'template/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Add Photo</div>
+                <div class="panel-body clearfix">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        {% if messages %}
+                            {% for msg in messages %}
+                                {{ msg.message }}
+                            {% endfor %}
+                        {% endif %}
+                        <form class="form-group column" action="." method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            Photo name: <input type="text" name="photo_name">
+                            Browse: <input type="file" name="photo">
+                            Featured? <input type="checkbox" name="is_featured">
+                            <input type="submit" value="Add" class="btn btn-primary">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

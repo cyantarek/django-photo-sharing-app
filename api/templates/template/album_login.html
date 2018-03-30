@@ -1,0 +1,27 @@
+{% extends 'template/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Access Denied</div>
+                <div class="panel-body clearfix">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        {% if messages %}
+                            {% for msg in messages %}
+                                {{ msg.message }}
+                            {% endfor %}
+                        {% endif %}
+                        <form class="form-group column" action="." method="post">
+                            {% csrf_token %}
+                            Password: <input type="password" name="_pass" class="form-control" placeholder="Enter password"><br>
+                            <input type="submit" value="Access" class="btn btn-success">
+                    </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

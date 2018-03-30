@@ -1,0 +1,54 @@
+<nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="font-weight: bold;font-size: 200%" href="/gallery/">FoTo</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+{#                <ul class="dropdown-menu cart-list">#}
+{#                    <li>#}
+{#                        <a href="#" class="photo"><img src="IMAGE_ADDRESS" class="cart-thumb" alt=""/></a>#}
+{#                        <h6><a href="#">Delica omtantur </a></h6>#}
+{#                        <p>2x - <span class="price">$99.99</span></p>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="#" class="photo"><img src="IMAGE_ADDRESS" class="cart-thumb" alt=""/></a>#}
+{#                        <h6><a href="#">Delica omtantur </a></h6>#}
+{#                        <p>2x - <span class="price">$99.99</span></p>#}
+{#                    </li>#}
+{#                    -- More List --#}
+{#                    <li class="total">#}
+{#                        <span class="pull-right"><strong>Total</strong>: $0.00</span>#}
+{#                        <a href="#" class="btn btn-default btn-cart">Cart</a>#}
+{#                    </li>#}
+{#                </ul>#}
+            </li>
+
+            {% if request.user.is_authenticated %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user|capfirst }} <b
+                            class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/dashboard/">Dashboard</a></li>
+                        <li><a href="/logout/">Logout</a></li>
+                    </ul>
+                </li>
+
+            {% else %}
+                <li><a href="/join/">Register</a></li>
+                <li><a href="/login/">Login</a></li>
+            {% endif %}
+        </ul>
+
+    </div>
+
+</nav>

@@ -1,0 +1,28 @@
+{% extends 'template/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Add Album</div>
+                <div class="panel-body clearfix">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        {% if messages %}
+                            {% for msg in messages %}
+                                {{ msg.message }}
+                            {% endfor %}
+                        {% endif %}
+                        <form class="form-group column" action="." method="post">
+                            {% csrf_token %}
+                            Album name: <input type="text" name="album_name" class="form-control">
+                            Password: <input type="text" name="album_password" class="form-control">
+                            <input type="submit" value="Create" class="btn btn success">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
