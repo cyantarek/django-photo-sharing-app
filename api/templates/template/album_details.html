@@ -1,6 +1,6 @@
 {% extends 'template/base.html' %}
 {% block title %}
-    Pikom | Products
+    Pikom | albums
 {% endblock %}
 
 {% block content %}
@@ -16,26 +16,25 @@
     <div class="col-xs-12">
         <div class="row">
             <div class="col-xs-8">
-                {% for product in album.photo_set.all %}
+                {% for photo in album.photo_set.all %}
                     <div class="col-xs-12 col-md-4">
                         <div class="prod-info-main prod-wrap clearfix">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="product-image">
-                                        <img src="{{ product.image.url }}" width="100%">
+                                    <div class="album-image">
+                                        <img src="{{ photo.image.url }}" width="100%">
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-sm-12 col-xs-12">
-                                    <div class="product-deatil">
+                                    <div class="album-deatil">
                                         <h5 class="name">
-                                            {{ product.name }}
+                                            {{ photo.name }}
                                         </h5>
                                         <span class="tag1"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- end product -->
                     </div>
                 {% endfor %}
             </div>
@@ -52,7 +51,7 @@
 
                     <div class="panel-heading">Comments and Rating</div>Rating: {{ rating|floatformat:"1" }}
                 {% if not request.user == album.publisher %}
-                    <form action="/album/{{ album.album_url_id }}/comment/" method="post">
+                    <form action="/album/{{ album.album_url_id }}/comment_rating/" method="post">
                         {% csrf_token %}
                         <br>
 
