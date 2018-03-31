@@ -216,7 +216,7 @@ def add_comment_rating(request, uid):
 			rating=request.POST["rating"],
 			album=models.Album.objects.get(album_url_id=uid)
 		)
-		if str(request.user) != "AnnonymousUser":
+		if str(request.user) == "AnnonymousUser":
 			new_comment.commenter = request.user
 			new_rating.rater = request.user
 			new_comment.save()
