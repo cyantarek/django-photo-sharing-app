@@ -1,0 +1,1 @@
+web: gunicorn chhuti_job.wsgi --log-file -
