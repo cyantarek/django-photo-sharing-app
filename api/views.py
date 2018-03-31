@@ -81,7 +81,8 @@ def dashboard(request):
 	"""The dashboard view for a publisher. It shows all the published albums of the user"""
 
 	albums = models.Album.objects.filter(publisher=request.user.id)
-	return render(request, "template/dashboard.html", {"albums": albums})
+	host = request.get_host()
+	return render(request, "template/dashboard.html", {"albums": albums, "host": host})
 
 
 @login_required(login_url="/login/")

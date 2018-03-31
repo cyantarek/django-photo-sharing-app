@@ -38,7 +38,7 @@
                                         <td><a href="/album/view/{{ item.album_url_id }}/">{{ item.name }}</a></td>
                                         <td>{{ item.photo_set.count }}</td>
                                         <td>{{ item.comment_set.count }}</td>
-                                        <td><a href="/album/view/{{ item.album_url_id }}/">http://127.0.0.1:8000/album/view/{{ item.album_url_id }}</a></td>
+                                        <td><a href="/album/view/{{ item.album_url_id }}/">{{ host }}/album/view/{{ item.album_url_id }}</a></td>
                                         <td>{{ item.album_password }}</td>
                                         <td>{{ item.rate_set.count }}</td>
                                     </tr>
