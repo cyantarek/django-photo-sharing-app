@@ -187,8 +187,7 @@ def add_photos(request, uid):
 		new_photo = models.Photo.objects.create(
 			name=request.POST["photo_name"],
 			image=request.FILES["photo"],
-			album=models.Album.objects.get(album_url_id=uid),
-			is_featured=True if request.POST.get("is_featured") == "on" else False
+			album=models.Album.objects.get(album_url_id=uid)
 		)
 		messages.success(request, "Photo Added")
 		return redirect("/album/view/%s/" % uid)

@@ -28,14 +28,12 @@ class Photo(models.Model):
 		This includes:
 		1. the album where the photo will go to
 		2. the actual image file
-		3. Making the photo a featured image for the album or not
-		4. And name of the photo
+		3. And name of the photo
 	"""
 
 	album = models.ForeignKey(Album, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to="images/")
 	name = models.CharField(max_length=100)
-	is_featured = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.name
